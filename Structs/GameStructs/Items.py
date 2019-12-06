@@ -18,6 +18,10 @@ from Construct import Float32l as Float
 from Construct import Float64l as Double
 from Construct import PaddedString
 
+# =============================================================================
+# SkillGemParam
+# =============================================================================
+
 Skill = Struct(
     "SkillID" / UInt32,
     "SkillPoints" / Byte,
@@ -38,3 +42,31 @@ SkillGemParam = Struct(
     "Decorations" / Decoration[this.Size]
 )
 
+# =============================================================================
+# Itm
+# =============================================================================
+
+ItmEntry = Struct(
+    "id" / UInt32,
+    "sub_type" / UByte,
+    "type" / UInt32,
+    "rarity" / UByte,
+    "carry_limit" / UByte,
+    "unk_limit" / UByte,
+    "sort_order" / UInt16,
+    "flags" / UInt32,
+    "icon_id" / UInt32,
+    "icon_color" / UInt16,
+    "sell_price" / UInt32,
+    "buy_price" / UInt32,
+)
+
+ItmHeader = Struct(
+    "identifier" / UInt16,
+    "num_entries" / UInt32,
+)
+
+Itm = Struct(
+    "header" / ItmHeader,
+    "entries" / ItmEntry[this.header.num_entries],
+)

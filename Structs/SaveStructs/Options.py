@@ -158,8 +158,8 @@ SectionData_1  = Struct(
  "hudHelpTextSize" / UByte,#TextSize,
  "confirmationButton" / UByte,#ConfirmationButton,
  "unkn2" / Byte[16],
- "brightness" / float32l,
+ "brightness" / Float,
  "unkn3" / Byte[12],
- "DLCOwned" / Int16,#VDLCType[256],
+ "DLCOwned" / Int16[256],#VDLCType,
  "unkn4" / Byte[456],
 )

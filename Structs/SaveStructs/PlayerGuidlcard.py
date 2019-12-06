@@ -250,9 +250,9 @@ GuildCard  = Struct(
  "titleFirst" / UInt16,
  "titleMiddle" / UInt16,
  "titleLast" / UInt16,
- "positionX" / float32l,
- "positionY" / float32l,
- "zoom" / float32l,
+ "positionX" / Float,
+ "positionY" / Float,
+ "zoom" / Float,
  "arenaRecords" / ArenaStats[10],
  "creaturestats" / CreatureStats,
 )

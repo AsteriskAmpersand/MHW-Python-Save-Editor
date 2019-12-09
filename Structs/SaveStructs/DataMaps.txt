@@ -1,0 +1,101 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  8 22:47:07 2019
+
+@author: AsteriskAmpersand
+"""
+
+
+typedef enum <uint32>
+{
+ Armor   =0,
+ Weapon  =1,
+ Charm   =2,
+ Kinsect =4
+ }
+
+}EquipmentType;
+
+typedef enum <uint32>
+{
+ Head  =0,
+ Torso =1,
+ Arms  =2,
+ Coil  =3,
+ Legs  =4
+
+}ArmorSlot;
+
+typedef enum <uint32>
+{
+ GreatSword     =0,
+ SwordAndShield =1,
+ DualSword      =2,
+ Longsword      =3,  
+ Hammer         =4,
+ HuntingHorn    =5,
+ Lance          =6,
+ Gunlance       =7,
+ SwitchAxe      =8,
+ Chargeblade    =9,
+ InsectGlaive   =10,
+ Bow            =11,
+ HeavyBowgun    =12,
+ LightBowgun    =13
+}WeaponType;
+
+typedef enum <uint32>
+{
+ No_Mod             =-1,
+ RecoilSupressor    =0,
+ ReloadAssist       =1,
+ DeviationSupressor =2,
+ CloseRangeUp       =3,
+ RangedAttUp        =4,
+ Shield             =5
+}BowGunMod;
+
+typedef enum <int32>
+{
+ Kin_None    =-1,
+ Kin_NoEle   =0,
+ Kin_Fire    =1,
+ Kin_Water   =2,
+ Kin_Ice     =3,
+ Kin_Thunder =4,
+ Kin_Dragon  =5
+
+}KinsectType;
+
+
+typedef enum <int32>
+{
+ Aug_None         =-1,
+ Aug_Empty        =0,
+ Aug_Attack       =1,
+ Aug_Affinity     =2,
+ Aug_Defense      =3,
+ Aug_SlotUpgrade  =4,
+ Aug_HealthRegen  =5,
+ ArmorIsAugmented =6
+
+}Augment;
+//Equipment
+
+ switch(equipt)
+ {
+  case 0: ArmorSlot armorslot; break;
+  case 1: WeaponType weapt; break;
+  case 2: UInt32 CharmPresence; break;
+  case 3: break;
+  case 4: UInt32 KinsectPresence; break;
+  default: UInt32 None; break;
+ }EquipmentSlot
+ 
+  switch(equipt)
+ {
+  case 1: BowGunMod bowgunmod1; break;
+  case 4: KinsectType kint; break;
+  default: BowGunMod bowgunmod1; break;
+ }GunModKin
+ """

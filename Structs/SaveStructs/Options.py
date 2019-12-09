@@ -4,19 +4,19 @@ Created on Tue Nov 26 00:41:11 2019
 
 @author: AsteriskAmpersand
 """
-from Construct import Struct
-from Construct import this
-from Construct import Int8sl as Byte
-from Construct import Int8ul as UByte
-from Construct import Int16sl as Int16
-from Construct import Int16ul as UInt16
-from Construct import Int32sl as Int32
-from Construct import Int32ul as UInt32
-from Construct import Int64sl as Int64
-from Construct import Int64ul as UInt64
-from Construct import Float32l as Float
-from Construct import Float64l as Double
-from Construct import PaddedString
+from construct import Struct
+from construct import this
+from construct import Int8sl as Byte
+from construct import Int8ul as UByte
+from construct import Int16sl as Int16
+from construct import Int16ul as UInt16
+from construct import Int32sl as Int32
+from construct import Int32ul as UInt32
+from construct import Int64sl as Int64
+from construct import Int64ul as UInt64
+from construct import Float32l as Float
+from construct import Float64l as Double
+from construct import PaddedString
 
 """
 typedef enum <int16>

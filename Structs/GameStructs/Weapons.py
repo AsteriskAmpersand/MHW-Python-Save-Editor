@@ -4,25 +4,17 @@ Created on Fri Dec  6 16:54:28 2019
 
 @author: aguevara
 """
-from Construct import Struct
-from Construct import this
-from Construct import Int8sl as Byte
-from Construct import Int8ul as UByte
-from Construct import Int16sl as Int16
-from Construct import Int16ul as UInt16
-from Construct import Int32sl as Int32
-from Construct import Int32ul as UInt32
-from Construct import Int64sl as Int64
-from Construct import Int64ul as UInt64
-from Construct import Float32l as Float
-from Construct import Float64l as Double
-from Construct import PaddedString
 
-WpDatHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
 
+try:
+    from .DatHeader import DatFile
+    from ..constructBoilerplate import *
+except:
+    from DatHeader import DatFile
+    import sys
+    sys.path.insert(1, '..')
+    from constructBoilerplate import *
+    
 WpDatEntry = Struct(
 	"id" / UInt32,
 	"unknown1" / Byte,
@@ -115,15 +107,18 @@ WpDatGEntry = Struct(
 	"unknown52" / Byte,
 )
 
-WpDat = Struct(
-    "header" / WpDatHeader,
-    "entries" / WpDatEntry[this.header.num_entries],
-)
-
-WpDatG = Struct(
-    "header" / WpDatHeader,
-    "entries" / WpDatGEntry[this.header.num_entries],
-)
+class WpDat(DatFile):
+    def __init__(self,filepath):
+        self.nameGmd = self.datToText(str(filepath))
+        self.descGmd = self.datToText(str(filepath))
+        if any((wp in filepath for wp in ["bow","hbg","lbg"])):
+            self.datEntry = WpDatGEntry
+        else:
+            self.datEntry = WpDatEntry
+        super().__init__(filepath)
+    def datToText(self,dat):
+        dat = dat.replace(r"\common\equip",r"\common\text\steam")
+        return dat.replace(".wp_dat_g","_eng.gmd").replace(".wp_dat","_eng.gmd")
 
 KireEntry = Struct(
     "id" / UInt32,
@@ -136,14 +131,6 @@ KireEntry = Struct(
     "purple" / UInt16,
 )
 
-KireHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
-
-
-Kire = Struct(
-    "header" / KireHeader,
-    "entries" / KireEntry[header.num_entries],
-)
+class Kire(DatFile):
+    datEntry = KireEntry
 

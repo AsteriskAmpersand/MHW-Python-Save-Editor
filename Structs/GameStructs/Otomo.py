@@ -4,24 +4,19 @@ Created on Fri Dec  6 17:44:44 2019
 
 @author: aguevara
 """
-from Construct import Struct
-from Construct import this
-from Construct import Int8sl as Byte
-from Construct import Int8ul as UByte
-from Construct import Int16sl as Int16
-from Construct import Int16ul as UInt16
-from Construct import Int32sl as Int32
-from Construct import Int32ul as UInt32
-from Construct import Int64sl as Int64
-from Construct import Int64ul as UInt64
-from Construct import Float32l as Float
-from Construct import Float64l as Double
-from Construct import PaddedString
 
-OAmDatHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
+
+try:
+    from .DatHeader import DatFile
+    from ..constructBoilerplate import *
+except:
+    from DatHeader import DatFile
+    import sys
+    sys.path.insert(1, '..')
+    from constructBoilerplate import *
+
+#common/text/steam/ot_armor_eng.gmd
+#common/text/steam/ot_series_eng.gmd
 
 OAmDatEntry = Struct(
     "id" / UInt32,
@@ -47,19 +42,12 @@ OAmDatEntry = Struct(
     "gmd_name_index" / UInt16,
     "gmd_desc_index" / UInt16,
 )
+class OAmDat(DatFile):
+    datEntry = OAmDatEntry
 
-OAmDat = Struct(
-    "header" / OAmDatHeader,
-    "entries" / OAmDatEntry[this.header.num_entries],
-)
+#common/text/steam/ot_weapon_eng.gmdcommon/text/steam/ot_weapon_eng.gmd
 
-
-WpDatHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
-
-WpDatEntry = Struct(
+OWpDatEntry = Struct(
     "id" / UInt32,
     "set_id" / UInt16,
     "element_id" / UByte,
@@ -81,8 +69,5 @@ WpDatEntry = Struct(
     "gmd_description_index" / UInt16,
 )
 
-WpDat = Struct(
-    "header" / WpDatHeader,
-    "entries" / WpDatEntry[this.header.num_entries],
-)
-
+class OWpDat(DatFile):
+    datEntry = OWpDatEntry

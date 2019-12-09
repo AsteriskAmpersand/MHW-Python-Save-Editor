@@ -5,21 +5,17 @@ Created on Fri Dec  6 17:21:57 2019
 @author: aguevara
 """
 
-from Construct import Struct
-from Construct import this
-from Construct import Int8sl as Byte
-from Construct import Int8ul as UByte
-from Construct import Int16sl as Int16
-from Construct import Int16ul as UInt16
-from Construct import Int32sl as Int32
-from Construct import Int32ul as UInt32
-from Construct import Int64sl as Int64
-from Construct import Int64ul as UInt64
-from Construct import Float32l as Float
-from Construct import Float64l as Double
-from Construct import PaddedString
 
-ArmUpEntry = Struct(
+try:
+    from .DatHeader import DatFile
+    from ..constructBoilerplate import *
+except:
+    from DatHeader import DatFile
+    import sys
+    sys.path.insert(1, '..')
+    from constructBoilerplate import *
+
+AmUpEntry = Struct(
     "unk1" / UInt16,
     "unk2" / UInt16,
     "unk3" / UInt16,
@@ -33,18 +29,8 @@ ArmUpEntry = Struct(
     "unk11" / UInt16,
 )
 
-
-ArmUpHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
-
-
-ArmUp = Struct(
-    "header" / ArmUpHeader,
-    "entries" / ArmUpEntry[this.header.num_entries],
-)
-
+class AmUp(DatFile):
+    datEntry = AmUpEntry
 
 AmDatEntry = Struct(
     "id" / UInt16,
@@ -92,12 +78,5 @@ AmDatEntry = Struct(
     "is_permanent" / UByte,
 )
 
-AmDatHeader = Struct(
-    "identifier" / UInt16,
-    "num_entries" / UInt32,
-)
-
-AmDat = Struct(
-    "header" / AmDatHeader,
-    "entries" / AmDatEntry[this.header.num_entries],
-)
+class AmDatUp(DatFile):
+    datEntry = AmDatEntry

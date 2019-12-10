@@ -7,8 +7,8 @@ Created on Fri Dec  6 17:21:57 2019
 
 
 try:
-    from .DatHeader import DatFile
-    from ..constructBoilerplate import *
+    from MSE.Structs.GameStructs.DatHeader import DatFile
+    from MSE.Structs.constructBoilerplate import *
 except:
     from DatHeader import DatFile
     import sys

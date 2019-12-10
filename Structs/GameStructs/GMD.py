@@ -5,7 +5,7 @@ Created on Fri Dec  6 12:58:23 2019
 @author: aguevara
 """
 try:
-    from ..constructBoilerplate import *
+    from MSE.Structs.constructBoilerplate import *
     from construct import IfThenElse
 except:
     import sys

@@ -1,7 +1,7 @@
 try:
-    from .PyStruct import PyStruct
-    from .Gmd import GmdFile
-    from ..constructBoilerplate import *
+    from MSE.Structs.PyStruct import PyStruct
+    from MSE.Structs.GameStructs.Gmd import GmdFile
+    from MSE.Structs.constructBoilerplate import *
 except:
     from PyStruct import PyStruct
     from Gmd import GmdFile

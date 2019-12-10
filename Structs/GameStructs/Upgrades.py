@@ -7,9 +7,10 @@ Created on Fri Dec  6 17:39:02 2019
 
 
 try:
-    from .DatHeader import DatFile
-    from ..constructBoilerplate import *
+    from MSE.Structs.GameStructs.DatHeader import DatFile
+    from MSE.Structs.constructBoilerplate import *
 except:
+    print(1)
     from DatHeader import DatFile
     import sys
     sys.path.insert(1, '..')

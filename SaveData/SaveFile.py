@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
 try:
     from .Encryption import decrypt, encrypt
+    from .SaveHeader import SaveHeader
+    from .SaveSettings import SaveSettings
+    from .SaveSlots import SaveSlots
     from ...Structs.SaveStructs.SaveSections import SaveStructure
 except:
     from Encryption import decrypt, encrypt
     import sys
     sys.path.insert(1, '...')
     from Structs.SaveStructs.SaveSections import SaveStructure
+    from SaveHeader import SaveHeader
+    from SaveSettings import SaveSettings
+    from SaveSlots import SaveSlots
     
 SAVESIGNATURE = bytearray([0x72,0xC8,0x62,0x47,0xA2,0xA4,0xF0,0xC1])
 DECRYPTEDSIGNATURE = bytearray([0x01,0x00,0x00,0x00,0x19,0x05,0x17,0x20])
@@ -15,11 +21,8 @@ class invalidFileError(Exception):pass
 
 class saveFile():
     def __init__(self, filepath):
-        #TODO - Check if filepath exists
-        #TODO - Check if save file opens correctly
         with open(filepath,"rb") as savehandle:
             saveBin = savehandle.read()
-        #TODO - Check that it's a valid save encrypted (Sig) or decrypted (0s)
         encrypted = self.checkEncryption(saveBin)
         saveFile = self.decryptSave(saveBin) if encrypted else saveBin
         self.deserialize(saveFile)
@@ -28,7 +31,7 @@ class saveFile():
         encryptedSig = saveData[0:8] == SAVESIGNATURE
         decryptedSig = saveData[0:8] == DECRYPTEDSIGNATURE
         if not (encryptedSig or decryptedSig):
-            raise invalidFileError("File is not a save. Mismatch to encrypted or decrypted signature")
+            raise invalidFileError("File is not a save. Mismatch to encrypted or decrypted signature.")
         return encryptedSig
     
     def decryptSave(self, saveData):
@@ -38,11 +41,15 @@ class saveFile():
         return decrypted
     
     def deserialize(self, saveFile):
-        #TODO - Error check the parsing
         with open(r"C:\Users\aguevara\Downloads\SAVEDATA1000.bin","wb") as f:
             f.write(saveFile)
-        struct = SaveStructure.parse(saveFile)
-        print(struct.data.savefiles.saveslots[1].hunterName)
+        try:
+            struct = SaveStructure.parse(saveFile)
+            self.header = SaveHeader(struct.header)
+            self.settings = SaveSettings(struct.data.controls,struct.data.options,struct.data.unknown)
+            self.saveslots = SaveSlots(struct.data.savefiles)
+        except:
+            raise invalidFileError("File structure is corrupted.")
         
 if '__main__' in __name__:
     s = saveFile(r"C:\Users\aguevara\Downloads\SAVEDATA1000")

@@ -118,7 +118,7 @@ class WpDat(DatFile):
         super().__init__(filepath)
     def datToText(self,dat):
         dat = dat.replace(r"\common\equip",r"\common\text\steam")
-        return dat.replace(".wp_dat_g","_eng.gmd").replace(".wp_dat","_eng.gmd")
+        return dat.replace(".wp_dat_g","_eng.gmd").replace(".wp_dat","_eng.gmd")#TODO - Localize
 
 KireEntry = Struct(
     "id" / UInt32,

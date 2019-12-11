@@ -185,7 +185,6 @@ PalicoEquipment  = Struct(
 )
 
 Palico  = Struct(
-
  "palicoName" / PaddedString(64,"utf8"),
  "palicoRank_Minus_1" / UInt32,
  "palicoHealth" / UInt32,

@@ -4,6 +4,7 @@ try:
     from ...Structs.SaveStructs.SaveSections import SaveStructure
 except:
     from Encryption import decrypt, encrypt
+    import sys
     sys.path.insert(1, '...')
     from Structs.SaveStructs.SaveSections import SaveStructure
     
@@ -38,8 +39,10 @@ class saveFile():
     
     def deserialize(self, saveFile):
         #TODO - Error check the parsing
+        with open(r"C:\Users\aguevara\Downloads\SAVEDATA1000.bin","wb") as f:
+            f.write(saveFile)
         struct = SaveStructure.parse(saveFile)
-        print(struct.data.savefiles[0].hunterName)
+        print(struct.data.savefiles.saveslots[1].hunterName)
         
 if '__main__' in __name__:
-    s = saveFile(r"D:\Program Files (x86)\Steam\userdata\214331925\582010\remote\SAVEDATA1000")
+    s = saveFile(r"C:\Users\aguevara\Downloads\SAVEDATA1000")

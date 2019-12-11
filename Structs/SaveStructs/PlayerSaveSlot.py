@@ -26,8 +26,7 @@ except:
 
 
 SaveSlot  = Struct(
-
- "hunterName"   /   UByte[64],
+ "hunterName"   /   PaddedString(64,"utf8"),
  "hunterRank"  /  UInt32,
  "zenni"  /  UInt32,
  "researchPoints"  /  UInt32,

@@ -26,7 +26,6 @@ Header  = Struct(
 
 
 SectionHeader  = Struct(
-
  "signature" / UInt32,
  "unkn0" / UInt32,
  "sectionSize" / UInt64,
@@ -52,11 +51,16 @@ SaveFiles  = Struct(
  "empty" / Byte[3267788],
 )
 
+OptionSection = Struct(
+ "head" / SectionHeader,
+ "options" / Options,
+)
+
 Data  = Struct(
 
  "sectionIndex" / UInt64[4],
  "controls" / Controls,
- "options" / Options,#SectionData_1
+ "options" / OptionSection,#SectionData_1
  "unknown" / Unknown,
  "savefiles" / SaveFiles,
  "padding" / Byte[8],

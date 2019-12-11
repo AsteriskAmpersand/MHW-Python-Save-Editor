@@ -11,3 +11,7 @@ from construct import Int64ul as UInt64
 from construct import Float32l as Float
 from construct import Float64l as Double
 from construct import CString, PaddedString
+
+
+from construct import Probe
+from construct import Tell

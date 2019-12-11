@@ -4,20 +4,12 @@ Created on Tue Nov 26 00:41:11 2019
 
 @author: AsteriskAmpersand
 """
-from construct import Struct
-from construct import this
-from construct import Int8sl as Byte
-from construct import Int8ul as UByte
-from construct import Int16sl as Int16
-from construct import Int16ul as UInt16
-from construct import Int32sl as Int32
-from construct import Int32ul as UInt32
-from construct import Int64sl as Int64
-from construct import Int64ul as UInt64
-from construct import Float32l as Float
-from construct import Float64l as Double
-from construct import PaddedString
-
+try:
+    from ..constructBoilerplate import *
+except:
+    import sys
+    sys.path.insert(1, '..')
+    from constructBoilerplate import *
 """
 typedef enum <int16>
 {
@@ -140,7 +132,7 @@ typedef enum <ubyte>
  B = 1
 }ConfirmationButton;
 """
-SectionData_1  = Struct(
+Options  = Struct(
  "unkn0" / Byte[8],
  "soundoutput" / UByte,#VSoundOutputDevice,
  "dynamicrange" / UByte,#VDynamicRange,

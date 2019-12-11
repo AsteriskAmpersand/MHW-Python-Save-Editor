@@ -18,6 +18,10 @@ def CapcomBlowfishEncrypt(file):
     cipher = Blowfish.new(b"xieZjoe#P2134-3zmaghgpqoe0z8$3azeq", Blowfish.MODE_ECB)
     return endianness_reversal(cipher.encrypt(endianness_reversal(file)))
 
+decrypt = CapcomBlowfishDecrypt
+encrypt = CapcomBlowfishEncrypt
+
+
 if __name__ == "__main__":
     if len(sys.argv)<2:
         saveFile = r"D:\Program Files (x86)\Steam\userdata\214331925\582010\remote\SAVEDATA1000"

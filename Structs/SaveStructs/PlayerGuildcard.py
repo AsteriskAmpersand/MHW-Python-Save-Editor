@@ -4,19 +4,14 @@ Created on Tue Nov 26 02:34:40 2019
 
 @author: AsteriskAmpersand
 """
-from construct import Struct
-from construct import this
-from construct import Int8sl as Byte
-from construct import Int8ul as UByte
-from construct import Int16sl as Int16
-from construct import Int16ul as UInt16
-from construct import Int32sl as Int32
-from construct import Int32ul as UInt32
-from construct import Int64sl as Int64
-from construct import Int64ul as UInt64
-from construct import Float32l as Float
-from construct import Float64l as Double
-from construct import PaddedString
+try:
+    from ..constructBoilerplate import *
+    from .PlayerAppearance import playerAppearance, palicoAppearance
+except:
+    import sys
+    sys.path.insert(1, '..')
+    from constructBoilerplate import *
+    from PlayerAppearance import playerAppearance, palicoAppearance
 
 
 Creatures8  = Struct(
@@ -103,11 +98,11 @@ Creatures16  = Struct(
 
 CreatureStats  = Struct(
 
- "captured" / Creatures16,
- "slayed" / Creatures16,
- "largest" / Creatures16,
- "smallest" / Creatures16,
- "researchLevel" / Creatures8,
+ "captured" / UInt16[64],
+ "slayed" / UInt16[64],
+ "largest" / UInt16[64],
+ "smallest" / UInt16[64],
+ "researchLevel" / UByte[64],
 )
 
 #Weapon Usage
@@ -141,10 +136,10 @@ WeaponUsages  = Struct(
 ArenaRecord  = Struct(
 
  "unkn" / Byte[4],
- "partnerName" / uchar[32],
+ "partnerName" / UByte[32],
  "partnerSteamID" / UInt64,
- "partnerCreated" / time64_t,
- "date" / time64_t,
+ "partnerCreated" / Double,
+ "date" / Double,
 )
 
 ArenaStats  = Struct(
@@ -191,7 +186,7 @@ PalicoEquipment  = Struct(
 
 Palico  = Struct(
 
- "palicoName" / uchar[64],
+ "palicoName" / PaddedString(64,"utf8"),
  "palicoRank_Minus_1" / UInt32,
  "palicoHealth" / UInt32,
  "palicoAttM" / UInt32,
@@ -199,7 +194,7 @@ Palico  = Struct(
  "palicoAffinity" / UInt32,
  "palicoDef" / UInt32,
  "palicoVsFire" / Int32,
- "palicoVsWater" / Int32sl,
+ "palicoVsWater" / Int32,
  "palicoVsThunder" / Int32,
  "palicoVsIce" / Int32,
  "palicoVsDragon" / Int32,
@@ -219,13 +214,13 @@ Palico  = Struct(
 GuildCard  = Struct(
         
  "steamID" / UInt64,
- "created" / time64_t,
+ "created" / Double,
  "unkn0" / UByte,
  "hunterRank" / UInt32,
  "playTime_s" / UInt32,
- "lastUpdated" / time64_t,
- "hunterName" / uchar[64],
- "primaryGroup" / uchar[54],
+ "lastUpdated" / Double,
+ "hunterName" / PaddedString(64,"utf8"),
+ "primaryGroup" / PaddedString(54,"utf8"),
  "unkn1" / Byte[16],
  "hunterAppearance" / playerAppearance,
  "palicoAppearance" / palicoAppearance,
@@ -245,8 +240,8 @@ GuildCard  = Struct(
  "expressionID" / UByte,
  "backgroundID" / UByte,
  "stickerID" / UByte,
- "greeting" / uchar[256],
- "title" / uchar[256],
+ "greeting" / PaddedString(256,"utf8"),
+ "title" / PaddedString(256,"utf8"),
  "titleFirst" / UInt16,
  "titleMiddle" / UInt16,
  "titleLast" / UInt16,

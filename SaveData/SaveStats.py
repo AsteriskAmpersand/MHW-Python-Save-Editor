@@ -2,7 +2,7 @@
 """
 Created on Thu Dec 12 11:07:25 2019
 
-@author: aguevara
+@author: AsteriskAmpersand
 """
 
 class StatsTab():

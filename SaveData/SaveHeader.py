@@ -2,7 +2,7 @@
 """
 Created on Wed Dec 11 17:45:17 2019
 
-@author: aguevara
+@author: AsteriskAmpersand
 """
 
 class SaveHeader():

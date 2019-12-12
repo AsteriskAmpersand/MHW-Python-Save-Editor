@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  6 12:58:23 2019
 
-@author: aguevara
+@author: AsteriskAmpersand
 """
 try:
     from MSE.Structs.constructBoilerplate import *

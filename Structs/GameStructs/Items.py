@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  6 12:50:30 2019
 
-@author: aguevara
+@author: AsteriskAmpersand
 """
 
 try:

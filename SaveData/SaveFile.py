@@ -44,10 +44,10 @@ class saveFile():
         with open(r"C:\Users\aguevara\Downloads\SAVEDATA1000.bin","wb") as f:
             f.write(saveFile)
         try:
-            struct = SaveStructure.parse(saveFile)
-            self.header = SaveHeader(struct.header)
-            self.settings = SaveSettings(struct.data.controls,struct.data.options,struct.data.unknown)
-            self.saveslots = SaveSlots(struct.data.savefiles)
+            self.struct = SaveStructure.parse(saveFile)
+            self.header = SaveHeader(self.struct.header)
+            self.settings = SaveSettings(self.struct.data.controls,self.struct.data.options,self.struct.data.unknown)
+            self.saveslots = SaveSlots(self.struct.data.savefiles)
         except:
             raise invalidFileError("File structure is corrupted.")
         

@@ -41,8 +41,6 @@ class saveFile():
         return decrypted
     
     def deserialize(self, saveFile):
-        with open(r"C:\Users\aguevara\Downloads\SAVEDATA1000.bin","wb") as f:
-            f.write(saveFile)
         try:
             struct = SaveStructure.parse(saveFile)
             self.header = SaveHeader(struct.header)

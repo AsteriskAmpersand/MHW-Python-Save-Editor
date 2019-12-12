@@ -2,7 +2,7 @@
 """
 Created on Wed Dec 11 18:08:54 2019
 
-@author: aguevara
+@author: AsteriskAmpersand
 """
 try:
     from .SaveStats import StatsTab

@@ -7,7 +7,7 @@ Created on Wed Dec 11 17:45:17 2019
 
 class SaveHeader():
     def __init__(self,header):
-        self.unkn0 = header.unkn0
-        self.unkn1 = header.unkn1
+        self.data = header
         self.steamID = header.steamID
+        self.dataHash = header.dataHash
         #check bounds when writing steamID

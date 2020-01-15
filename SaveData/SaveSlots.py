@@ -31,6 +31,11 @@ class SaveSlot():
             self.equipment = EquipmentTab(slot.equipslots,slot.equiploadout)
             self.investigations = InvestigationsTab(slot.investigations)
             self.dlc = DlcTab(slot.DLCClaimed)
+            self.data=slot
+    def clone(self):
+        return SaveSlot(self.data.struct.parse(self.serialize()))
+    def serialize(self):
+        pass
 
 class SaveSlots():
     def __init__(self,binSaveSlots):

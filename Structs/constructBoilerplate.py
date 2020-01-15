@@ -1,4 +1,4 @@
-from construct import Struct
+from construct import Struct as RootStruct
 from construct import this
 from construct import Int8sl as Byte
 from construct import Int8ul as UByte
@@ -15,3 +15,8 @@ from construct import CString, PaddedString
 
 from construct import Probe
 from construct import Tell
+
+class Struct(RootStruct):
+    def parse(self,*args,**kwargs):
+        collection = super().parse(*args,**kwargs)
+        collection.struct = self

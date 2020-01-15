@@ -27,7 +27,7 @@ Shortcuts  = Struct(
 ItLoadout  = Struct(
 
  "loadoutName" / PaddedString(32,"utf8"),
- "unkn0" / Byte[584],
+ "loadoutData" / Byte[584],
  "shortcuts" / Shortcuts[4],
 )
 
